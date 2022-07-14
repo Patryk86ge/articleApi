@@ -46,7 +46,6 @@ async function dataArticles(query) {
   } else {
     res = await fetch(`https://api.spaceflightnewsapi.net/v3/articles?_limit=${limit}`);
   }
-
   let result = await res.json();
   if (sortByTitle) {
     sortByTitle.addEventListener('click', (e) => {
