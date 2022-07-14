@@ -1,0 +1,33 @@
+
+.app{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.box__input{
+   display: flex;
+    justify-content: center;
+}
+.container__box {
+    border: 2px solid royalblue;
+    padding: 5px;
+    width: 300px;
+    margin: 10px;
+
+}
+.img__box {
+    width: 100%;
+
+}
+img {
+    width: 100%;
+
+}
+.box__addFavorite {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 5px solid black;
+    margin-bottom: 10px;
+}
