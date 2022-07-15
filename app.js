@@ -7,9 +7,7 @@ const arrowTitle = document.querySelector(".sortByTitle i");
 const arrowData = document.querySelector(".sorBtyData i");
 const count = 200;
 let limit = 15;
-let directionOne = false;
-
-
+let directionOne = true;
 
 Element.prototype.remove = function () {
   this.parentElement.removeChild(this);
@@ -26,8 +24,8 @@ const sortTitle = (data, direction) => {
   arrowTitle.classList.toggle("fa-caret-up")
   data.sort((a, b) => {
     return direction ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
-
   })
+  console.log(data);
 }
 
 const sortData = (data, direction) => {
@@ -35,6 +33,10 @@ const sortData = (data, direction) => {
   data.sort((a, b) => {
     return direction ? a.publishedAt.localeCompare(b.publishedAt) : b.publishedAt.localeCompare(a.publishedAt);
   })
+  console.log(direction);
+}
+const changeDirection = () => {
+  directionOne = !directionOne
 }
 
 async function btnFavorite(elId) {
@@ -70,12 +72,14 @@ async function dataArticles(query) {
   if (sortByTitle) {
     sortByTitle.addEventListener('click', (e) => {
       sortTitle(result,directionOne);
+      changeDirection();
       renderArcicles(result);
     })
   }
   if (sorBtyData) {
     sorBtyData.addEventListener('click', (e) => {
       sortData(result,directionOne);
+      changeDirection();
       renderArcicles(result);
     })
   }
