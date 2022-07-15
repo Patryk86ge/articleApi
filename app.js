@@ -3,8 +3,11 @@ const divApp = document.querySelector("#app");
 const btn = document.querySelector("button");
 const sortByTitle = document.querySelector(".sortByTitle");
 const sorBtyData = document.querySelector(".sorBtyData");
+const arrowTitle = document.querySelector(".sortByTitle i");
+const arrowData = document.querySelector(".sorBtyData i");
 const count = 200;
 let limit = 15;
+let directionOne = false;
 
 
 
@@ -17,6 +20,21 @@ NodeList.prototype = HTMLCollection.prototype = function () {
       this[i].parentElement.removeChild(this[i]);
     }
   }
+}
+
+const sortTitle = (data, direction) => {
+  arrowTitle.classList.toggle("fa-caret-up")
+  data.sort((a, b) => {
+    return direction ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+
+  })
+}
+
+const sortData = (data, direction) => {
+  arrowData.classList.toggle("fa-caret-up")
+  data.sort((a, b) => {
+    return direction ? a.publishedAt.localeCompare(b.publishedAt) : b.publishedAt.localeCompare(a.publishedAt);
+  })
 }
 
 async function btnFavorite(elId) {
@@ -51,22 +69,20 @@ async function dataArticles(query) {
   let result = await res.json();
   if (sortByTitle) {
     sortByTitle.addEventListener('click', (e) => {
-      result = result.sort(function (a, b) {
-        return (a.title).localeCompare(b.title);
-      })
+      sortTitle(result,directionOne);
       renderArcicles(result);
     })
   }
   if (sorBtyData) {
     sorBtyData.addEventListener('click', (e) => {
-      result = result.sort(function (a, b) {
-        return (a.publishedAt).localeCompare(b.publishedAt);
-      })
+      sortData(result,directionOne);
       renderArcicles(result);
     })
   }
   renderArcicles(result);
 }
+
+
 
 function renderArcicles(result) {
   divApp.innerHTML = '';
