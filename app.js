@@ -6,6 +6,8 @@ const sorBtyData = document.querySelector(".sorBtyData");
 const count = 200;
 let limit = 15;
 
+
+
 Element.prototype.remove = function () {
   this.parentElement.removeChild(this);
 }
@@ -53,27 +55,22 @@ async function dataArticles(query) {
         return (a.title).localeCompare(b.title);
       })
       renderArcicles(result);
-
-      console.log("sortByTitle");
     })
   }
   if (sorBtyData) {
     sorBtyData.addEventListener('click', (e) => {
       result = result.sort(function (a, b) {
-        return ('' + a.publishedAt).localeCompare(b.publishedAt);
+        return (a.publishedAt).localeCompare(b.publishedAt);
       })
       renderArcicles(result);
-      console.log("sorBtyData");
     })
   }
   renderArcicles(result);
 }
 
 function renderArcicles(result) {
-  console.log(result);
   divApp.innerHTML = '';
   result.map((el) => {
-
     divApp.innerHTML += `<div id=${el.id} class="container__box">
          <div class="img__box">
          <img src="${el.imageUrl}" alt="el.imageUrl">
